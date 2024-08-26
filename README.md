@@ -29,3 +29,20 @@ gcc -o calc calc.tab.c lex.yy.c -lfl
 ```
 
 ## 4. Pruebas
+
+### Operaciones sencillas
+```
+4*6
+```
+*Salida esperada: 24*
+
+### Operaciones con complejidad jearquica
+```
+2342*524533-(92/8*(2-4))
+```
+*Salida esperada: 1228456309*
+### Manejo de errores 
+```
+95746516/0
+```
+*Salida esperada: Error: division by zero*
