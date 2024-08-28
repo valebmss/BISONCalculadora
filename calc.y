@@ -31,12 +31,20 @@ calclist:
             if ($2 == (int)$2)  // Check if the result is an integer
                 printf("= %d\n", (int)$2);
             else
-                printf("= %lf\n", $2);
+                printf("= %.1f\n", $2);  // Print with one decimal place
         }
         had_error = 0;  // Reset error flag for next calculation
+        printf("> ");  // Prompt for next input
     }
-    | calclist '\n'
+    | calclist '\n'      { printf(">  "); }  // Prompt for next input
+    | calclist error '\n' { 
+        yyerror("error de sintaxis");
+        had_error = 1;  // Set error flag
+        yyclearin;  // Clear the input to recover from error
+        printf("> ");  // Prompt for next input
+    }
     ;
+
 
 exp:
     NUMBER                 { $$ = $1; }
